@@ -1,0 +1,55 @@
+<div id="wrapper">
+  <div id="page-wrapper" class="gray-bg">
+    <div class="wrapper wrapper-content">
+      <div class="row list-row">
+        <div class="col-md-12">
+          <h3 class="page-heading text-center">
+            Url Shortener
+          </h3>
+        </div>
+        <legend>
+        </legend>
+        <div class="col-md-12">
+          <form class="form-horizontal" method="POST" action="<%= create_short_url_path %>">
+            <div class="form-group">
+              <div class="col-sm-2 col-sm-2 control-label"><b>Url*</b></div>
+              <div class="col-sm-8">
+                <input class="form-control required-field" type="text" name="long_url" id="long_url" value="" fieldDisplayName="Long Url" placeholder="Please copy the whole Url with https:// part">
+                <span class="error"></span>
+              </div>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-primary create_short_url_button">
+                Submit
+              </button>
+            </div>
+            <br/>
+            <div class="text-center link_div hidden">
+              <span>This is your short url:</span>
+              <span class="link_span"><a href="" target="_blank"></a></span>
+            </div>
+          </form>
+          <div class="col-md-12 margin-top-20 text-center" >
+            <span><strong>Trending Urls</strong></span>
+            <table class="list_table table table-bordered table-striped table-hover">
+              <tr>
+                <th class="text-center">#</th>
+                <th class="text-center">Short Url</th>
+                <th class="text-center">Original Url</th>
+              </tr>
+              <%  @trending_urls.each_with_index { |url, count |    %>
+                  <td><%= count+1 %> </td>
+                  <td><a href="<%= url.long_url %>" target="_blank"><%= url.short_url %></a></td>
+                  <td><%= url.long_url %></td>
+                  </tr>
+              <%
+                }
+              %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
